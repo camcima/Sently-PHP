@@ -51,18 +51,20 @@ class Sently
     /**
      * Send SMS using Sent.ly
      * 
-     * @param string $message
-     * @param string $destination
+     * @param string $message The contents of the message. As before, all ‘+’ (plus signs), should be put in as %2b.
+     * @param string $destination The destination number you’re sending a message to. This should be in the international number format, with a ‘+’ preceding the country code. The + as before, should be put in as %2b.
+     * @param int $ttl The Time-To-Live (TTL) for the message sent, measured in minutes. If a message within the time-window specified, then the message is set as a failure. If the TTL is not set, then the message does not expire, and will be sent whenever a phone is available.
      * 
      * @return boolean
      */
-    public function sendSms($message, $destination)
+    public function sendSms($message, $destination, $ttl = 5)
     {
         $paramArray = array(
             'username' => $this->email,
             'password' => $this->password,
             'text' => $message,
-            'to' => $destination
+            'to' => $destination,
+            'ttl' => $ttl
         );
 
         $params = '';
