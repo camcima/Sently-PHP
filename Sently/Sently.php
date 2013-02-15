@@ -42,12 +42,25 @@ class Sently
      * @param string $email     Sent.ly Account E-Mail
      * @param string $password  Sent.ly Account Password
      */
-    public function __construct($email, $password)
+    public function __construct($email = null, $password = null)
     {
         $this->email = $email;
         $this->password = $password;
     }
 
+    /**
+     * Set Sent.ly Credentials
+     * 
+     * @param string $email Sent.ly Account E-Mail
+     * @param string $password Sent.ly Account Password
+     * @return \Sently\Sently
+     */
+    public function setCredentials($email, $password) {
+        $this->email = $email;
+        $this->password = $password;
+        return $this;
+    }
+    
     /**
      * Send SMS using Sent.ly
      * 
